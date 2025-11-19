@@ -1,0 +1,5 @@
+{
+  "name": "React Desktop OS",
+  "description": "A window desktop simulation built in React and TypeScript. It includes draggable windows, a taskbar, a start menu, and several functional applications like a browser, notepad, calculator, and a Gemini-powered chat assistant.",
+  "requestFramePermissions": []
+}
