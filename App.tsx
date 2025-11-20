@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { GoogleGenAI, Chat } from '@google/genai';
 import { AnalogCamera } from './AnalogCamera';
+import { SpaceTimeSim } from './SpaceTimeSim';
 
 // --- SVG ICONS ---
 const NotepadIcon: React.FC<{ className?: string }> = ({ className }) => (
@@ -38,6 +39,11 @@ const CameraAppIcon: React.FC<{ className?: string }> = ({ className }) => (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="3.2" />
         <path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" />
+    </svg>
+);
+const PlanetIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
     </svg>
 );
 
@@ -431,6 +437,7 @@ const APPS: Record<string, AppDefinition> = {
     'gemini': { id: 'gemini', title: 'Gemini Chat', icon: <GeminiIcon />, component: GeminiChat, defaultWidth: 500, defaultHeight: 650 },
     'tetris': { id: 'tetris', title: 'Tetris', icon: <TetrisIcon />, component: Tetris, defaultWidth: 300, defaultHeight: 600 },
     'camera': { id: 'camera', title: 'Analog Cam', icon: <CameraAppIcon />, component: AnalogCamera, defaultWidth: 800, defaultHeight: 650 },
+    'spacetime': { id: 'spacetime', title: 'Relativity', icon: <PlanetIcon />, component: SpaceTimeSim, defaultWidth: 800, defaultHeight: 600 },
 };
 
 // --- UI COMPONENTS ---
