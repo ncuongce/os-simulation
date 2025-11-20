@@ -498,7 +498,7 @@ const Window: React.FC<{
     }, [onDrag, state.id, desktopSize, state.width, state.height]);
 
     const windowStyle: React.CSSProperties = state.isMaximized ? {
-        top: 0, left: 0, width: '100%', height: '100%',
+        top: 0, left: 0, width: '100%', height: 'calc(100% - 48px)',
     } : {
         top: state.y, left: state.x, width: state.width, height: state.height
     };
