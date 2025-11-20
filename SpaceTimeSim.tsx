@@ -3,6 +3,11 @@ import React, { useRef, useEffect, useState } from 'react';
 export const SpaceTimeSim: React.FC = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [mass, setMass] = useState(50); // Earth mass simulation
+    const massRef = useRef(mass);
+
+    useEffect(() => {
+        massRef.current = mass;
+    }, [mass]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -45,15 +50,15 @@ export const SpaceTimeSim: React.FC = () => {
             const cy = height / 2;
 
             // Physics constants for simulation
-            const gravityStrength = mass * 100;
+            const gravityStrength = massRef.current * 100;
 
             // Helper to project 3D point to 2D screen
             // We simulate a camera looking at the grid from an angle
             const project = (x: number, y: number, z: number) => {
                 const fov = 800;
-                const cameraY = -600; // Camera height
-                const cameraZ = 600;  // Camera distance back
-                const angleX = 0.8;   // Tilt angle
+                const cameraY = -400; // Camera height (higher up)
+                const cameraZ = 400;  // Camera distance back
+                const angleX = 1.2;   // Tilt angle (more top-down)
 
                 // Rotate world coordinates to camera space
                 // Simple rotation around X axis
@@ -169,7 +174,7 @@ export const SpaceTimeSim: React.FC = () => {
         render();
 
         return () => cancelAnimationFrame(animationFrameId);
-    }, [mass]);
+    }, []);
 
     return (
         <div className="w-full h-full bg-black relative overflow-hidden flex flex-col">
@@ -185,7 +190,7 @@ export const SpaceTimeSim: React.FC = () => {
                 </div>
             </div>
 
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent z-10">
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent z-10 pointer-events-auto">
                 <div className="max-w-md mx-auto flex items-center gap-4">
                     <span className="text-xs font-mono text-blue-300 whitespace-nowrap">MASS INTENSITY</span>
                     <input
